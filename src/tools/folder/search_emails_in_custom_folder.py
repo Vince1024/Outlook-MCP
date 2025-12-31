@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 
 def register(mcp):
     @mcp.tool()
-    def search_emails_in_custom_folder(folder_path: str, query: Optional[str] = None, limit: int = 20, days_back: int = DEFAULT_DAYS_BACK, recursive: bool = False) -> str:
+    def search_emails_in_custom_folder(folder_path: str, query: Optional[str] = None, limit: int = 20, days_back: int = DEFAULT_DAYS_BACK, recursive: bool = True) -> str:
         """
         Search for emails in a specific custom Outlook folder.
         
@@ -18,7 +18,7 @@ def register(mcp):
             query: Search query (optional, searches in subject/body/sender)
             limit: Maximum number of results (default: 20, max: 50)
             days_back: Number of days to search back (default: 2, 0 for all)
-            recursive: If True, searches in all subfolders recursively (default: False)
+            recursive: If True, searches in all subfolders recursively (default: True)
         
         Returns:
             JSON with success status, folder path, email count, and matching emails

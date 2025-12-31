@@ -1,6 +1,6 @@
 # Complete Documentation - MCP Outlook
 
-Complete technical documentation for MCP Outlook v1.2.3
+Complete technical documentation for MCP Outlook v1.0.1
 
 ## Table of Contents
 
@@ -1076,6 +1076,7 @@ Searches emails in a custom folder.
 | `query` | str | None | Search term (optional) |
 | `limit` | int | 20 | Max number of results |
 | `days_back` | int | 2 | Days back to search |
+| `recursive` | bool | True | Search in subfolders |
 
 #### Return
 
@@ -1117,8 +1118,10 @@ search_emails_in_custom_folder(
 #### Notes
 
 - **IMPORTANT**: `days_back=2` by default to avoid freezes
+- **NEW**: `recursive=True` by default to search in all subfolders automatically
 - `days_back=0` or negative searches ALL emails (very slow)
 - Use `list_outlook_folders()` to find paths
+- Set `recursive=False` to search only in the specified folder
 - Path is case-sensitive
 
 ---

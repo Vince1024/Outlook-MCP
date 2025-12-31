@@ -84,11 +84,8 @@ def register(mcp):
             for folder_id in folders_to_search:
                 search_folder = namespace.GetDefaultFolder(folder_id)
                 
-                filter_str = f"@SQL=\"urn:schemas:httpmail:subject\" LIKE '%{query}%' OR " \
-                            f"\"urn:schemas:httpmail:textdescription\" LIKE '%{query}%' OR " \
-                            f"\"urn:schemas:httpmail:fromname\" LIKE '%{query}%'\""
-                
-                items = search_folder.Items.Restrict(filter_str)
+                # Use simple text matching instead of SQL filter (more reliable)
+                items = search_folder.Items
                 items.Sort("[ReceivedTime]", True)
                 
                 remaining_limit = limit - len(emails)
@@ -97,11 +94,18 @@ def register(mcp):
                 
                 while mail is not None and count < remaining_limit:
                     try:
-                        emails.append(format_email(mail))
-                        count += 1
+                        # Manual filter: check subject, body, sender name
+                        query_lower = query.lower()
+                        subject = mail.Subject.lower() if mail.Subject else ""
+                        body = mail.Body.lower() if mail.Body else ""
+                        sender = mail.SenderName.lower() if hasattr(mail, 'SenderName') and mail.SenderName else ""
                         
-                        if len(emails) >= limit:
-                            break
+                        if query_lower in subject or query_lower in body or query_lower in sender:
+                            emails.append(format_email(mail))
+                            count += 1
+                            
+                            if len(emails) >= limit:
+                                break
                     except Exception:
                         pass
                     

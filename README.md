@@ -9,7 +9,7 @@
 
 A Model Context Protocol (MCP) server for Microsoft Outlook integration.
 
-**Version**: 1.2.3 | **Documentation**: [DOCUMENTATION.md](DOCUMENTATION.md) | **Contributing**: [CONTRIBUTING.md](CONTRIBUTING.md) | **Examples**: [EXAMPLES.md](EXAMPLES.md)
+**Version**: 1.0.1 | **Documentation**: [DOCUMENTATION.md](DOCUMENTATION.md) | **Contributing**: [CONTRIBUTING.md](CONTRIBUTING.md) | **Examples**: [EXAMPLES.md](EXAMPLES.md)
 
 ## Overview
 

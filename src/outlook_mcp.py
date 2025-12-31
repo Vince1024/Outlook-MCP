@@ -30,7 +30,7 @@ Security Notes:
     - No credentials are logged or transmitted
     - Email body content is truncated in responses to prevent data leakage
     
-Version: 1.2.3
+Version: 1.0.1
 Architecture: Ultra-Modular (1 file per tool)
 """
 

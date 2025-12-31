@@ -55,8 +55,13 @@ class TestSearchEmailsInCustomFolder:
         mock_items.Sort = MagicMock()
         mock_items.__getitem__ = lambda self, i: [mock_mail1, mock_mail2][i-1]  # 1-based indexing
         
+        # Mock Folders as an empty list (no subfolders)
+        mock_folders = MagicMock()
+        mock_folders.__iter__ = Mock(return_value=iter([]))
+        
         mock_folder = MagicMock()
         mock_folder.Items = mock_items
+        mock_folder.Folders = mock_folders
         
         mock_namespace = MagicMock()
         mock_app = MagicMock()
@@ -71,7 +76,7 @@ class TestSearchEmailsInCustomFolder:
             {"subject": "Custom Email 2", "sender": "user2@example.com"}
         ]
         
-        # Call the tool
+        # Call the tool (recursive=True by default)
         result = self.tool_func(folder_path="My Folder", limit=2)
         
         # Verify result
@@ -131,8 +136,13 @@ class TestSearchEmailsInCustomFolder:
         mock_items.Sort = MagicMock()
         mock_items.__getitem__ = lambda self, i: [mock_mail1, mock_mail2, mock_mail3][i-1]
         
+        # Mock Folders as an empty list (no subfolders)
+        mock_folders = MagicMock()
+        mock_folders.__iter__ = Mock(return_value=iter([]))
+        
         mock_folder = MagicMock()
         mock_folder.Items = mock_items
+        mock_folder.Folders = mock_folders
         
         mock_namespace = MagicMock()
         mock_app = MagicMock()
@@ -147,8 +157,8 @@ class TestSearchEmailsInCustomFolder:
             {"subject": "Invoice"}
         ]
         
-        # Call the tool with query
-        result = self.tool_func(folder_path="My Folder", query="payment", limit=5)
+        # Call the tool with query and recursive=False, days_back=0 to avoid date filtering
+        result = self.tool_func(folder_path="My Folder", query="payment", limit=5, recursive=False, days_back=0)
         
         # Verify result - should only return emails matching "payment"
         result_dict = json.loads(result)
@@ -169,8 +179,13 @@ class TestSearchEmailsInCustomFolder:
         mock_items.Restrict = MagicMock(return_value=mock_items)
         mock_items.__getitem__ = lambda self, i: mock_mail1 if i == 1 else None
         
+        # Mock Folders as an empty list (no subfolders)
+        mock_folders = MagicMock()
+        mock_folders.__iter__ = Mock(return_value=iter([]))
+        
         mock_folder = MagicMock()
         mock_folder.Items = mock_items
+        mock_folder.Folders = mock_folders
         
         mock_namespace = MagicMock()
         mock_app = MagicMock()
@@ -182,7 +197,7 @@ class TestSearchEmailsInCustomFolder:
         # Mock format_email
         mock_format.return_value = {"subject": "Recent Email"}
         
-        # Call the tool with days_back
+        # Call the tool with days_back (recursive=True by default)
         result = self.tool_func(folder_path="My Folder", limit=5, days_back=7)
         
         # Verify result
@@ -205,8 +220,13 @@ class TestSearchEmailsInCustomFolder:
         mock_items.Sort = MagicMock()
         mock_items.__getitem__ = Mock(side_effect=Exception("Index out of range"))
         
+        # Mock Folders as an empty list (no subfolders)
+        mock_folders = MagicMock()
+        mock_folders.__iter__ = Mock(return_value=iter([]))
+        
         mock_folder = MagicMock()
         mock_folder.Items = mock_items
+        mock_folder.Folders = mock_folders
         
         mock_namespace = MagicMock()
         mock_app = MagicMock()
@@ -215,8 +235,8 @@ class TestSearchEmailsInCustomFolder:
         
         mock_get_folder.return_value = mock_folder
         
-        # Call the tool
-        result = self.tool_func(folder_path="Empty Folder", limit=5)
+        # Call the tool with recursive=False, days_back=0 to avoid filtering
+        result = self.tool_func(folder_path="Empty Folder", limit=5, recursive=False, days_back=0)
         
         # Verify result
         result_dict = json.loads(result)
@@ -252,8 +272,13 @@ class TestSearchEmailsInCustomFolder:
         mock_items.Sort = MagicMock()
         mock_items.__getitem__ = lambda self, i: mock_mails[i-1] if i <= len(mock_mails) else None
         
+        # Mock Folders as an empty list (no subfolders)
+        mock_folders = MagicMock()
+        mock_folders.__iter__ = Mock(return_value=iter([]))
+        
         mock_folder = MagicMock()
         mock_folder.Items = mock_items
+        mock_folder.Folders = mock_folders
         
         mock_namespace = MagicMock()
         mock_app = MagicMock()
@@ -264,7 +289,7 @@ class TestSearchEmailsInCustomFolder:
         
         mock_format.side_effect = [{"subject": f"Email {i}"} for i in range(10)]
         
-        # Call with limit=5 to test that limit is enforced
+        # Call with limit=5 to test that limit is enforced (recursive=True by default)
         result = self.tool_func(folder_path="My Folder", limit=5)
         
         # Verify that only requested limit (5) emails are returned, not all 10 available
