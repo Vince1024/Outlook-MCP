@@ -9,7 +9,7 @@ Get up and running with MCP Outlook in 5 minutes!
 - [ ] Python 3.10+ installed
 - [ ] Outlook is currently running
 
-## 📦 Installation (3 steps)
+## Installation (3 steps)
 
 ### Option A: Automatic (Recommended)
 
@@ -27,7 +27,7 @@ python test_connection.py
 # 3. If tests pass, you're ready!
 ```
 
-## 🧪 Test Your Installation
+## Test Your Installation
 
 ```bash
 python test_connection.py
@@ -100,7 +100,7 @@ python src/outlook_mcp.py
 
 Once configured, try asking your AI assistant:
 
-### <img src="https://api.iconify.design/material-symbols/mail-outline.svg?color=%23004080" height="20"> Email Examples
+### <img src="https://api.iconify.design/material-symbols/mail-outline.svg?color=%23004080" width="20"> Email Examples
 
 ```
 "Show me my last 5 unread emails"
@@ -108,7 +108,7 @@ Once configured, try asking your AI assistant:
 "Send an email to john@example.com with subject 'Meeting Follow-up'"
 ```
 
-### <img src="https://api.iconify.design/material-symbols/calendar-month-outline.svg?color=%23004080" height="20"> Calendar Examples
+### <img src="https://api.iconify.design/material-symbols/calendar-month-outline.svg?color=%23004080" width="20"> Calendar Examples
 
 ```
 "What meetings do I have this week?"
@@ -116,7 +116,7 @@ Once configured, try asking your AI assistant:
 "Find all meetings about 'sprint planning'"
 ```
 
-### <img src="https://api.iconify.design/material-symbols/perm-contact-calendar.svg?color=%23004080" height="20"> Contact Examples
+### <img src="https://api.iconify.design/material-symbols/perm-contact-calendar.svg?color=%23004080" width="20"> Contact Examples
 
 ```
 "Find contact information for Jane Smith"
@@ -163,7 +163,7 @@ python Scripts/pywin32_postinstall.py -install
 - Check [CONTRIBUTING.md](CONTRIBUTING.md) if you want to add features
 - View [CHANGELOG.md](CHANGELOG.md) for version history
 
-## 🆘 Need Help?
+## Need Help?
 
 1. Check the error message in the terminal
 2. Run `python test_connection.py` for diagnostics

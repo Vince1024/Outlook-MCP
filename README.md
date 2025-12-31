@@ -5,7 +5,7 @@
 [![Platform](https://img.shields.io/badge/platform-Windows-blue.svg)](https://www.microsoft.com/windows)
 [![MCP](https://img.shields.io/badge/MCP-Compatible-green.svg)](https://modelcontextprotocol.io) 
 
-<img src="https://api.iconify.design/material-symbols/mail-outline.svg?color=%23004080" height="60"> <img src="https://api.iconify.design/material-symbols/calendar-month-outline.svg?color=%23004080" height="60"> <img src="https://api.iconify.design/material-symbols/perm-contact-calendar.svg?color=%23004080" height="60"> <img src="https://api.iconify.design/material-symbols/output-circle.svg?color=%23004080" height="60"> <img src="https://api.iconify.design/material-symbols/settings-account-box.svg?color=%23004080" height="60"> <img src="https://api.iconify.design/material-symbols/feature-search.svg?color=%23004080" height="60">
+<img src="https://api.iconify.design/material-symbols/mail-outline.svg?color=%23004080" width="60"> <img src="https://api.iconify.design/material-symbols/calendar-month-outline.svg?color=%23004080" width="60"> <img src="https://api.iconify.design/material-symbols/perm-contact-calendar.svg?color=%23004080" width="60"> <img src="https://api.iconify.design/material-symbols/output-circle.svg?color=%23004080" width="60"> <img src="https://api.iconify.design/material-symbols/settings-account-box.svg?color=%23004080" width="60"> <img src="https://api.iconify.design/material-symbols/feature-search.svg?color=%23004080" width="60">
 
 A Model Context Protocol (MCP) server for Microsoft Outlook integration.
 
@@ -15,12 +15,12 @@ A Model Context Protocol (MCP) server for Microsoft Outlook integration.
 
 This MCP server provides AI assistants with the ability to interact with Microsoft Outlook, including:
 
-- <img src="https://api.iconify.design/material-symbols/mail-outline.svg?color=%23004080" height="20"> **Email Management**: Read, search, send, and draft emails with HTML support, Outlook signatures, and attachments
-- <img src="https://api.iconify.design/material-symbols/calendar-month-outline.svg?color=%23004080" height="20"> **Calendar Management**: View, create, search calendar events, and respond to meeting invitations
-- <img src="https://api.iconify.design/material-symbols/perm-contact-calendar.svg?color=%23004080" height="20"> **Contact Management**: View, create, and search contacts
-- <img src="https://api.iconify.design/material-symbols/output-circle.svg?color=%23004080" height="20"> **Out-of-Office Management**: Configure automatic reply settings
-- <img src="https://api.iconify.design/material-symbols/settings-account-box.svg?color=%23004080" height="20"> **User Preferences Detection**: Automatically learn email formatting preferences from sent emails
-- <img src="https://api.iconify.design/material-symbols/feature-search.svg?color=%23004080" height="20"> **Live Monitoring**: Real-time Outlook state via MCP Resources (unread count, recent emails, today's events)
+- <img src="https://api.iconify.design/material-symbols/mail-outline.svg?color=%23004080" width="20"> **Email Management**: Read, search, send, and draft emails with HTML support, Outlook signatures, and attachments
+- <img src="https://api.iconify.design/material-symbols/calendar-month-outline.svg?color=%23004080" width="20"> **Calendar Management**: View, create, search calendar events, and respond to meeting invitations
+- <img src="https://api.iconify.design/material-symbols/perm-contact-calendar.svg?color=%23004080" width="20"> **Contact Management**: View, create, and search contacts
+- <img src="https://api.iconify.design/material-symbols/output-circle.svg?color=%23004080" width="20"> **Out-of-Office Management**: Configure automatic reply settings
+- <img src="https://api.iconify.design/material-symbols/settings-account-box.svg?color=%23004080" width="20"> **User Preferences Detection**: Automatically learn email formatting preferences from sent emails
+- <img src="https://api.iconify.design/material-symbols/feature-search.svg?color=%23004080" width="20"> **Live Monitoring**: Real-time Outlook state via MCP Resources (unread count, recent emails, today's events)
 
 ## Features
 

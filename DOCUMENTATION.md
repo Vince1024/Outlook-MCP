@@ -7,12 +7,12 @@ Complete technical documentation for MCP Outlook v1.2.3
 - [Architecture](#architecture)
 - [Installation](#installation)
 - [Configuration](#configuration)
-- <img src="https://api.iconify.design/material-symbols/mail-outline.svg?color=%23004080" height="16"> [Email Tools](#email-tools)
-- <img src="https://api.iconify.design/material-symbols/calendar-month-outline.svg?color=%23004080" height="16"> [Calendar Tools](#calendar-tools)
-- <img src="https://api.iconify.design/material-symbols/perm-contact-calendar.svg?color=%23004080" height="16"> [Contact Tools](#contact-tools)
-- <img src="https://api.iconify.design/material-symbols/folder-outline.svg?color=%23004080" height="16"> [Folder Tools](#folder-tools)
-- <img src="https://api.iconify.design/material-symbols/output-circle.svg?color=%23004080" height="16"> [Out-of-Office Tools](#out-of-office-tools)
-- <img src="https://api.iconify.design/material-symbols/feature-search.svg?color=%23004080" height="16"> [MCP Resources](#mcp-resources)
+- <img src="https://api.iconify.design/material-symbols/mail-outline.svg?color=%23004080" width="16"> [Email Tools](#email-tools)
+- <img src="https://api.iconify.design/material-symbols/calendar-month-outline.svg?color=%23004080" width="16"> [Calendar Tools](#calendar-tools)
+- <img src="https://api.iconify.design/material-symbols/perm-contact-calendar.svg?color=%23004080" width="16"> [Contact Tools](#contact-tools)
+- <img src="https://api.iconify.design/material-symbols/folder-outline.svg?color=%23004080" width="16"> [Folder Tools](#folder-tools)
+- <img src="https://api.iconify.design/material-symbols/output-circle.svg?color=%23004080" width="16"> [Out-of-Office Tools](#out-of-office-tools)
+- <img src="https://api.iconify.design/material-symbols/feature-search.svg?color=%23004080" width="16"> [MCP Resources](#mcp-resources)
 - [Error Handling](#error-handling)
 - [Performance](#performance)
 - [Security](#security)
@@ -28,8 +28,8 @@ MCP Outlook is an MCP (Model Context Protocol) server that allows AI assistants 
 
 ```mermaid
 graph TD
-    A("🤖 AI Assistant<br/>Cursor/Claude") -->|"⚡ MCP Protocol"| B("🔧 MCP Outlook<br/>Server")
-    B -->|"🔌 COM Automation"| C("✉️ Microsoft<br/>Outlook")
+    A("AI Assistant<br/>Cursor/Claude") -->|" MCP Protocol "| B("MCP Outlook<br/>Server")
+    B -->|"COM Automation"| C("Microsoft<br/>Outlook")
     
     style A fill:#E3F2FD,stroke:#90CAF9,stroke-width:2px,color:#1565C0
     style B fill:#E8F5E9,stroke:#81C784,stroke-width:2px,color:#2E7D32

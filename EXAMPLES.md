@@ -140,7 +140,7 @@ I'll create a draft email about tomorrow's standup.
 
 ---
 
-## 📅 Calendar Examples
+## Calendar Examples
 
 ### Example 5: Check Today's Meetings
 
@@ -395,9 +395,9 @@ I'll analyze your recent sent emails to learn your formatting preferences.
 ```
 Based on your last 3 sent emails, here are your formatting preferences:
 
-📝 Font: InspireTWDC
-🎨 Color: #004080 (Disney Blue)
-📏 Size: 12pt
+Font: InspireTWDC
+Color: #004080 (Disney Blue)
+Size: 12pt
 ✅ Confidence: 93% (very consistent)
 
 I can now format automated emails to match your personal style!
@@ -438,7 +438,7 @@ EMAILS (3 unread):
 - Team: "Sprint Planning Notes"
 - HR: "Benefits Update"
 
-📅 TODAY'S SCHEDULE:
+TODAY'S SCHEDULE:
 - 9:00 AM: Team Standup (30 min)
 - 2:00 PM: Project Review (1 hour)
 - 4:00 PM: 1-on-1 with Manager (30 min)
@@ -471,7 +471,7 @@ RECENT EMAILS WITH JOHN:
 2. "Meeting Agenda" (Jan 14, 3:00 PM)
 3. "Budget Questions" (Jan 12, 10:00 AM)
 
-👤 JOHN'S CONTACT INFO:
+JOHN'S CONTACT INFO:
 Name: John Doe
 Email: john@company.com
 Phone: +1-555-1234
@@ -501,7 +501,7 @@ Ready for your meeting!
 
 **AI Response**:
 ```
-📊 YOUR DAY SUMMARY:
+YOUR DAY SUMMARY:
 
 EMAILS SENT: 7
 - Follow-up to Jane about budget
@@ -509,7 +509,7 @@ EMAILS SENT: 7
 - Response to HR about benefits
 ...
 
-📅 MEETINGS ATTENDED: 3
+MEETINGS ATTENDED: 3
 - Team Standup (9:00 AM)
 - Project Review (2:00 PM)
 - 1-on-1 with Manager (4:00 PM)
@@ -518,7 +518,7 @@ Great work today! ```
 
 ---
 
-## 💡 Pro Tips
+## Pro Tips
 
 ### Tip 1: Use Natural Language
 
