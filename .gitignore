@@ -48,3 +48,6 @@ Thumbs.db
 .coverage
 htmlcov/
 
+# Work notes (temporary analysis files)
+Work Notes/
+

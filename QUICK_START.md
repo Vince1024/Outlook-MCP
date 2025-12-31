@@ -100,7 +100,7 @@ python src/outlook_mcp.py
 
 Once configured, try asking your AI assistant:
 
-### Email Examples
+### <img src="https://api.iconify.design/material-symbols/mail-outline.svg?color=%23004080" height="20"> Email Examples
 
 ```
 "Show me my last 5 unread emails"
@@ -108,7 +108,7 @@ Once configured, try asking your AI assistant:
 "Send an email to john@example.com with subject 'Meeting Follow-up'"
 ```
 
-### Calendar Examples
+### <img src="https://api.iconify.design/material-symbols/calendar-month-outline.svg?color=%23004080" height="20"> Calendar Examples
 
 ```
 "What meetings do I have this week?"
@@ -116,7 +116,7 @@ Once configured, try asking your AI assistant:
 "Find all meetings about 'sprint planning'"
 ```
 
-### Contact Examples
+### <img src="https://api.iconify.design/material-symbols/perm-contact-calendar.svg?color=%23004080" height="20"> Contact Examples
 
 ```
 "Find contact information for Jane Smith"

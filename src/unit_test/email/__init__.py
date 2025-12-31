@@ -1,0 +1,4 @@
+"""
+Email tools tests package
+"""
+

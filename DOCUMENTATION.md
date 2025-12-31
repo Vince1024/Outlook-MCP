@@ -7,12 +7,12 @@ Complete technical documentation for MCP Outlook v1.2.3
 - [Architecture](#architecture)
 - [Installation](#installation)
 - [Configuration](#configuration)
-- [Email Tools](#email-tools)
-- [Calendar Tools](#calendar-tools)
-- [Contact Tools](#contact-tools)
-- [Folder Tools](#folder-tools)
-- [Out-of-Office Tools](#out-of-office-tools)
-- [MCP Resources](#mcp-resources)
+- <img src="https://api.iconify.design/material-symbols/mail-outline.svg?color=%23004080" height="16"> [Email Tools](#email-tools)
+- <img src="https://api.iconify.design/material-symbols/calendar-month-outline.svg?color=%23004080" height="16"> [Calendar Tools](#calendar-tools)
+- <img src="https://api.iconify.design/material-symbols/perm-contact-calendar.svg?color=%23004080" height="16"> [Contact Tools](#contact-tools)
+- <img src="https://api.iconify.design/material-symbols/folder-outline.svg?color=%23004080" height="16"> [Folder Tools](#folder-tools)
+- <img src="https://api.iconify.design/material-symbols/output-circle.svg?color=%23004080" height="16"> [Out-of-Office Tools](#out-of-office-tools)
+- <img src="https://api.iconify.design/material-symbols/feature-search.svg?color=%23004080" height="16"> [MCP Resources](#mcp-resources)
 - [Error Handling](#error-handling)
 - [Performance](#performance)
 - [Security](#security)
@@ -220,7 +220,7 @@ logger.setLevel(logging.DEBUG)  # Instead of CRITICAL
 
 ---
 
-## Email Tools
+## <img src="https://api.iconify.design/material-symbols/mail-outline.svg?color=%23004080" width="32"> Email Tools
 
 ### `get_inbox_emails`
 
@@ -665,7 +665,7 @@ learn_user_email_preferences(sample_size=5)
 
 ---
 
-## Calendar Tools
+## <img src="https://api.iconify.design/material-symbols/calendar-month-outline.svg?color=%23004080" width="32"> Calendar Tools
 
 ### `get_calendar_events`
 
@@ -907,7 +907,7 @@ respond_to_meeting(
 
 ---
 
-## Contact Tools
+## <img src="https://api.iconify.design/material-symbols/perm-contact-calendar.svg?color=%23004080" width="32"> Contact Tools
 
 ### `get_contacts`
 
@@ -1017,7 +1017,7 @@ search_contacts(query="Acme Corp")
 
 ---
 
-## Folder Tools
+## <img src="https://api.iconify.design/material-symbols/folder-outline.svg?color=%23004080" width="32"> Folder Tools
 
 ### `list_outlook_folders`
 
@@ -1123,7 +1123,7 @@ search_emails_in_custom_folder(
 
 ---
 
-## Out-of-Office Tools
+## <img src="https://api.iconify.design/material-symbols/output-circle.svg?color=%23004080" width="32"> Out-of-Office Tools
 
 ### `get_out_of_office_settings`
 
@@ -1427,7 +1427,7 @@ EMAIL_BODY_PREVIEW_LENGTH = 500  # Limited to 500 characters
 
 ---
 
-## MCP Resources
+## <img src="https://api.iconify.design/material-symbols/feature-search.svg?color=%23004080" width="32"> MCP Resources
 
 MCP Resources provide **real-time monitoring** of Outlook state. Unlike tools (which require explicit calls), resources can be **subscribed to** by AI assistants for automatic updates.
 

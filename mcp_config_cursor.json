@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "outlook": {
+      "command": "python",
+      "args": [
+        "C:\\Users\\vpapuchon\\source\\repos\\MCP-OUTLOOK\\src\\outlook_mcp.py"
+      ],
+      "env": {}
+    }
+  }
+}
+
+

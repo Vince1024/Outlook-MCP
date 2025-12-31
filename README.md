@@ -5,7 +5,7 @@
 [![Platform](https://img.shields.io/badge/platform-Windows-blue.svg)](https://www.microsoft.com/windows)
 [![MCP](https://img.shields.io/badge/MCP-Compatible-green.svg)](https://modelcontextprotocol.io) 
 
-<img src="https://api.iconify.design/material-symbols/mail-outline.svg?color=%23004080" width="64" height="64" alt="mail icon"> 
+<img src="https://api.iconify.design/material-symbols/mail-outline.svg?color=%23004080" height="60"> <img src="https://api.iconify.design/material-symbols/calendar-month-outline.svg?color=%23004080" height="60"> <img src="https://api.iconify.design/material-symbols/perm-contact-calendar.svg?color=%23004080" height="60"> <img src="https://api.iconify.design/material-symbols/output-circle.svg?color=%23004080" height="60"> <img src="https://api.iconify.design/material-symbols/settings-account-box.svg?color=%23004080" height="60"> <img src="https://api.iconify.design/material-symbols/feature-search.svg?color=%23004080" height="60">
 
 A Model Context Protocol (MCP) server for Microsoft Outlook integration.
 
@@ -15,18 +15,18 @@ A Model Context Protocol (MCP) server for Microsoft Outlook integration.
 
 This MCP server provides AI assistants with the ability to interact with Microsoft Outlook, including:
 
-- **Email Management**: Read, search, send, and draft emails with HTML support, Outlook signatures, and attachments
-- **Calendar Management**: View, create, search calendar events, and respond to meeting invitations
-- **Contact Management**: View, create, and search contacts
-- **Out-of-Office Management**: Configure automatic reply settings
-- **User Preferences Detection**: Automatically learn email formatting preferences from sent emails
-- **Live Monitoring**: Real-time Outlook state via MCP Resources (unread count, recent emails, today's events)
+- <img src="https://api.iconify.design/material-symbols/mail-outline.svg?color=%23004080" height="20"> **Email Management**: Read, search, send, and draft emails with HTML support, Outlook signatures, and attachments
+- <img src="https://api.iconify.design/material-symbols/calendar-month-outline.svg?color=%23004080" height="20"> **Calendar Management**: View, create, search calendar events, and respond to meeting invitations
+- <img src="https://api.iconify.design/material-symbols/perm-contact-calendar.svg?color=%23004080" height="20"> **Contact Management**: View, create, and search contacts
+- <img src="https://api.iconify.design/material-symbols/output-circle.svg?color=%23004080" height="20"> **Out-of-Office Management**: Configure automatic reply settings
+- <img src="https://api.iconify.design/material-symbols/settings-account-box.svg?color=%23004080" height="20"> **User Preferences Detection**: Automatically learn email formatting preferences from sent emails
+- <img src="https://api.iconify.design/material-symbols/feature-search.svg?color=%23004080" height="20"> **Live Monitoring**: Real-time Outlook state via MCP Resources (unread count, recent emails, today's events)
 
 ## Features
 
 > **Detailed documentation for each feature**: [DOCUMENTATION.md](DOCUMENTATION.md)
 
-### Email Tools ([Documentation](DOCUMENTATION.md#outils-email))
+### <img src="https://api.iconify.design/material-symbols/mail-outline.svg?color=%23004080" width="30"> 9 Email Tools ([Documentation](DOCUMENTATION.md#outils-email)) 
 
 - `get_inbox_emails` - Retrieve emails from inbox with filtering options
 - `get_sent_emails` - Retrieve sent emails
@@ -38,7 +38,7 @@ This MCP server provides AI assistants with the ability to interact with Microso
 - `send_email_with_attachments` - Send emails with file attachments
 - `learn_user_email_preferences` - Automatically learn email formatting preferences from sent emails
 
-### Calendar Tools ([Documentation](DOCUMENTATION.md#outils-calendrier))
+### <img src="https://api.iconify.design/material-symbols/calendar-month-outline.svg?color=%23004080" width="30"> 5 Calendar Tools ([Documentation](DOCUMENTATION.md#outils-calendrier))
 
 - `get_calendar_events` - Get upcoming calendar events
 - `create_calendar_event` - Create new calendar events with attendees
@@ -46,24 +46,25 @@ This MCP server provides AI assistants with the ability to interact with Microso
 - `get_meeting_requests` - Get pending meeting invitations that need a response
 - `respond_to_meeting` - Accept, decline, or tentatively respond to meeting invitations
 
-### Contact Tools ([Documentation](DOCUMENTATION.md#outils-contacts))
+### <img src="https://api.iconify.design/material-symbols/perm-contact-calendar.svg?color=%23004080" width="30"> 3 Contact Tools ([Documentation](DOCUMENTATION.md#outils-contacts))
 
 - `get_contacts` - Retrieve contacts with optional name filtering
 - `create_contact` - Create new contacts
 - `search_contacts` - Search contacts by name, email, or company
 
-### Folder Tools ([Documentation](DOCUMENTATION.md#outils-dossiers))
+### <img src="https://api.iconify.design/material-symbols/folder-outline.svg?color=%23004080" width="30"> 3 Folder Tools ([Documentation](DOCUMENTATION.md#outils-dossiers))
 
 - `list_outlook_folders` - List all Outlook folders (ultra-fast, no item counts)
 - `search_emails_in_custom_folder` - Search in specific custom folders with date filtering
+- `list_outlook_rules` - List all Outlook rules with conditions and actions
 
-### Out-of-Office Tools ([Documentation](DOCUMENTATION.md#outils-out-of-office))
+### <img src="https://api.iconify.design/material-symbols/output-circle.svg?color=%23004080" width="30"> 3 Out-of-Office Tools ([Documentation](DOCUMENTATION.md#outils-out-of-office))
 
 - `get_out_of_office_settings` - Get current automatic reply settings
 - `set_out_of_office` - Configure automatic replies (immediate or scheduled)
 - `disable_out_of_office` - Disable automatic replies
 
-### MCP Resources ([Documentation](DOCUMENTATION.md#mcp-resources))
+### <img src="https://api.iconify.design/material-symbols/feature-search.svg?color=%23004080" width="30"> 3 MCP Resources ([Documentation](DOCUMENTATION.md#mcp-resources))
 
 - `outlook://inbox/unread-count` - Real-time unread email count
 - `outlook://inbox/recent` - 5 most recent emails

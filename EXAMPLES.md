@@ -2,7 +2,7 @@
 
 Real-world examples of using MCP Outlook with AI assistants.
 
-## Email Examples
+## <img src="https://api.iconify.design/material-symbols/mail-outline.svg?color=%23004080" width="32"> Email Examples
 
 ### Example 1: Check Unread Emails
 

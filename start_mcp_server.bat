@@ -1,31 +1,31 @@
 @echo off
-REM Script to start the MCP Outlook Server
-REM This script launches the Outlook MCP server that Cursor will connect to
+REM Startup script for MCP Outlook Server (Modular Architecture)
 
 echo ========================================
-echo Starting MCP Outlook Server
+echo MCP Outlook Server
+echo Modular Architecture
 echo ========================================
 echo.
 
-cd /d "%~dp0"
-
-echo Current directory: %CD%
-echo.
-
-echo Checking Python installation...
-python --version
-if %errorlevel% neq 0 (
+REM Check if Python is installed
+python --version >nul 2>&1
+if errorlevel 1 (
     echo ERROR: Python is not installed or not in PATH
+    echo Please install Python 3.8 or higher
     pause
     exit /b 1
 )
+
+echo Starting MCP Outlook Server...
 echo.
 
-echo Starting MCP Outlook server...
-echo Press Ctrl+C to stop the server
-echo.
-
+REM Start server
 python src\outlook_mcp.py
 
+REM If server stops, display a message
+echo.
+echo ========================================
+echo Server stopped
+echo ========================================
 pause
 
