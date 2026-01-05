@@ -4,10 +4,11 @@ Configuration and Constants for MCP Outlook Server
 This module contains all configuration constants used across the MCP Outlook server.
 Centralizing configuration makes it easier to maintain and modify settings.
 
-Version: 2.0.0
+Version: 1.0.2
 """
 
 import logging
+import os
 
 # ============================================================================
 # LOGGING CONFIGURATION
@@ -83,12 +84,41 @@ EMAIL_BODY_PREVIEW_LENGTH = 500    # Truncate email bodies to prevent excessive 
 DEFAULT_DAYS_BACK = 2              # Only search emails from last 2 days by default (ultra-fast!)
 
 # ============================================================================
+# USER CONFIGURATION (from environment variables)
+# ============================================================================
+
+# User email addresses
+USER_EMAIL = os.getenv('OUTLOOK_USER_EMAIL', '')
+PERSO_EMAIL = os.getenv('OUTLOOK_PERSO_EMAIL', '')
+TEAM_EMAIL = os.getenv('OUTLOOK_TEAM_EMAIL', '')
+
+# Primary folder for searches (where user's emails arrive via rules)
+PRIMARY_FOLDER = os.getenv('OUTLOOK_PRIMARY_FOLDER', '')
+
+# Default signature name for sent emails
+DEFAULT_SIGNATURE = os.getenv('OUTLOOK_DEFAULT_SIGNATURE', '')
+
+# Default limit for email searches (can be overridden per tool)
+USER_DEFAULT_LIMIT = int(os.getenv('OUTLOOK_DEFAULT_LIMIT', DEFAULT_EMAIL_LIMIT))
+
+# Auto-learn email style at startup (true/false)
+AUTO_LEARN_STYLE = os.getenv('OUTLOOK_AUTO_LEARN_STYLE', 'false').lower() == 'true'
+
+# Number of sent emails to analyze for style learning
+STYLE_LEARNING_EMAIL_COUNT = 1
+
+# ============================================================================
 # EXCLUDED STORES/FOLDERS
 # ============================================================================
 # These will be skipped when listing folders or searching
-# Add your specific folders to exclude here if needed
+# Can be configured via OUTLOOK_EXCLUDED_FOLDERS env var (semicolon-separated)
 
-EXCLUDED_STORES = [
-    # Example: "Team Mailbox Name",
-]
+EXCLUDED_FOLDERS_ENV = os.getenv('OUTLOOK_EXCLUDED_FOLDERS', '')
+EXCLUDED_STORES = [folder.strip() for folder in EXCLUDED_FOLDERS_ENV.split(';') if folder.strip()]
+
+# Add default exclusions if not already present
+DEFAULT_EXCLUSIONS = ['All Public Folders', 'Dossiers publics']
+for exclusion in DEFAULT_EXCLUSIONS:
+    if exclusion not in EXCLUDED_STORES:
+        EXCLUDED_STORES.append(exclusion)
 

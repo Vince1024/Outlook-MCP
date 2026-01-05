@@ -7,8 +7,9 @@ Creates a draft email in Outlook without sending it.
 import json
 import logging
 from typing import Optional
-from config import OUTLOOK_ITEM_MAIL
+from config import OUTLOOK_ITEM_MAIL, DEFAULT_SIGNATURE, AUTO_LEARN_STYLE
 from utils import get_outlook_application, get_outlook_signature
+from utils.style_learner import apply_style_to_html, learn_user_email_style
 
 logger = logging.getLogger(__name__)
 
@@ -40,8 +41,9 @@ def register(mcp):
             cc: CC recipients (optional), semicolon-separated
             bcc: BCC recipients (optional), semicolon-separated
             html_body: HTML body content (optional). If provided, this will be used instead of body
-            signature_name: Name of Outlook signature to use (optional). If provided, loads signature from Outlook
-                Example: "Work Signature" will load "Work Signature (user@company.com).htm" from signatures folder
+            signature_name: CURRENTLY UNUSED - Signature is inserted via mail.Display() which always uses 
+                Outlook's default signature. This parameter is kept for API compatibility but has no effect.
+                To use a specific signature, change Outlook's default signature settings.
         
         Returns:
             JSON string with structure:
@@ -77,35 +79,61 @@ def register(mcp):
             mail.To = to
             mail.Subject = subject
             
-            # Determine the email body
-            if signature_name:
+            # Learn style from recent sent emails if AUTO_LEARN_STYLE enabled (no caching)
+            learned_style = None
+            if AUTO_LEARN_STYLE:
                 try:
+                    learned_style = learn_user_email_style()
+                    if learned_style:
+                        logger.debug("Style learned from recent sent emails", extra={"style": learned_style})
+                except Exception as e:
+                    logger.debug("Failed to learn style: %s", e)
+            
+            # Determine signature to use
+            # Priority: signature_name param > DEFAULT_SIGNATURE config > None
+            sig_name = signature_name if signature_name is not None else (DEFAULT_SIGNATURE if DEFAULT_SIGNATURE else None)
+            
+            # Build email body
+            if html_body:
+                # User provided HTML body - use as is
+                final_body = html_body
+            else:
+                # Plain text body - apply learned style if available
+                if learned_style:
+                    final_body = apply_style_to_html(body, learned_style)
+                else:
+                    # No style - plain text
+                    final_body = body
+            
+            # Add signature if requested
+            if sig_name:
+                try:
+                    # Get signature via Display (inserts Outlook's default signature)
+                    # Note: This always uses the default signature, not sig_name
                     mail.Display(False)
                     signature_html = mail.HTMLBody
                     
-                    if html_body:
-                        mail.HTMLBody = html_body + signature_html
+                    # Simple prepend: put our content before the entire signature HTML
+                    if isinstance(final_body, str) and '<' in final_body:
+                        mail.HTMLBody = final_body + signature_html
                     else:
-                        body_html = body.replace('\n', '<br>')
-                        mail.HTMLBody = f"<html><body><p>{body_html}</p>{signature_html}</body></html>"
+                        # Plain text to HTML
+                        body_html = final_body.replace('\n', '<br>')
+                        mail.HTMLBody = f"<p>{body_html}</p>" + signature_html
                         
-                except Exception:
-                    signature_html = get_outlook_signature(signature_name)
-                    if signature_html:
-                        if html_body:
-                            mail.HTMLBody = html_body + "<br>" + signature_html
-                        else:
-                            body_html = body.replace('\n', '<br>')
-                            mail.HTMLBody = f"<html><body><p>{body_html}</p><br>{signature_html}</body></html>"
+                except Exception as e:
+                    logger.error(f"Failed to add signature: {e}")
+                    # Fallback: just use body
+                    if isinstance(final_body, str) and '<' in final_body:
+                        mail.HTMLBody = final_body
                     else:
-                        if html_body:
-                            mail.HTMLBody = html_body
-                        else:
-                            mail.Body = body
-            elif html_body:
-                mail.HTMLBody = html_body
+                        mail.Body = final_body
             else:
-                mail.Body = body
+                # No signature requested
+                if isinstance(final_body, str) and '<' in final_body:
+                    mail.HTMLBody = final_body
+                else:
+                    mail.Body = final_body
             
             if cc:
                 mail.CC = cc

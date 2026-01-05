@@ -137,7 +137,7 @@ def get_all_folders(folder, folder_list: Optional[List] = None, parent_path: str
         # Safety check: Detect circular references
         folder_id = id(folder)
         if folder_id in visited_ids:
-            logger.warning(f"Circular reference detected at path: {parent_path}")
+            logger.debug(f"Circular reference detected at path: {parent_path}")
             return folder_list
         
         visited_ids.add(folder_id)

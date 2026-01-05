@@ -5,6 +5,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.2] - 2026-01-06
+
+### Changed
+- Auto-learning now happens dynamically on every `send_email` / `create_draft_email` operation (no longer at startup)
+- Style learning analyzes only the most recent sent email (configurable via `STYLE_LEARNING_EMAIL_COUNT`)
+- Removed caching mechanism - learning is performed live when `OUTLOOK_AUTO_LEARN_STYLE=true`
+
+### Removed
+- `config/user_email_style.json` cache file (no longer needed)
+- `insert_styled_content_into_html()` function from `style_learner.py` (unused)
+
+### Fixed
+- Circular reference detection log level changed from WARNING to DEBUG in `folder_helper.py`
+- Documentation updated to reflect actual auto-learning behavior
+
+### Documentation
+- Updated `signature_name` parameter documentation to clarify current limitations
+- README.md auto-learning section now accurately describes live learning behavior
+
+---
+
 ## [1.0.1] - 2025-12-31
 
 ### Changed

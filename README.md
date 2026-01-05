@@ -9,7 +9,7 @@
 
 A Model Context Protocol (MCP) server for Microsoft Outlook integration.
 
-**Version**: 1.0.1 | **Documentation**: [DOCUMENTATION.md](DOCUMENTATION.md) | **Contributing**: [CONTRIBUTING.md](CONTRIBUTING.md) | **Examples**: [EXAMPLES.md](EXAMPLES.md)
+**Version**: 1.0.2 | **Documentation**: [DOCUMENTATION.md](DOCUMENTATION.md) | **Contributing**: [CONTRIBUTING.md](CONTRIBUTING.md) | **Examples**: [EXAMPLES.md](EXAMPLES.md)
 
 ## Overview
 
@@ -19,24 +19,25 @@ This MCP server provides AI assistants with the ability to interact with Microso
 - <img src="https://api.iconify.design/material-symbols/calendar-month-outline.svg?color=%23004080" width="20"> **Calendar Management**: View, create, search calendar events, and respond to meeting invitations
 - <img src="https://api.iconify.design/material-symbols/perm-contact-calendar.svg?color=%23004080" width="20"> **Contact Management**: View, create, and search contacts
 - <img src="https://api.iconify.design/material-symbols/output-circle.svg?color=%23004080" width="20"> **Out-of-Office Management**: Configure automatic reply settings
-- <img src="https://api.iconify.design/material-symbols/settings-account-box.svg?color=%23004080" width="20"> **User Preferences Detection**: Automatically learn email formatting preferences from sent emails
+- <img src="https://api.iconify.design/material-symbols/settings-account-box.svg?color=%23004080" width="20"> **Auto-Learning Style**: Automatically learns your email formatting preferences (font, size, color) from sent emails
 - <img src="https://api.iconify.design/material-symbols/feature-search.svg?color=%23004080" width="20"> **Live Monitoring**: Real-time Outlook state via MCP Resources (unread count, recent emails, today's events)
 
 ## Features
 
 > **Detailed documentation for each feature**: [DOCUMENTATION.md](DOCUMENTATION.md)
 
-### <img src="https://api.iconify.design/material-symbols/mail-outline.svg?color=%23004080" width="30"> 9 Email Tools ([Documentation](DOCUMENTATION.md#outils-email)) 
+### <img src="https://api.iconify.design/material-symbols/mail-outline.svg?color=%23004080" width="30"> Email Tools ([Documentation](DOCUMENTATION.md#outils-email)) 
 
 - `get_inbox_emails` - Retrieve emails from inbox with filtering options
 - `get_sent_emails` - Retrieve sent emails
 - `search_emails` - Search emails across folders by subject, body, or sender
-- `send_email` - Send emails with CC/BCC support, HTML content, and Outlook signature integration
-- `create_draft_email` - Create draft emails without sending, with HTML and signature support
+- `send_email` - Send emails with CC/BCC support, HTML content, and **auto-learned style**
+- `create_draft_email` - Create draft emails without sending, with HTML and **auto-learned style**
 - `get_email_attachments` - Get list of attachments from a specific email
 - `download_email_attachment` - Download attachment from an email to disk
 - `send_email_with_attachments` - Send emails with file attachments
-- `learn_user_email_preferences` - Automatically learn email formatting preferences from sent emails
+
+> **Auto-Learning Style**: When `OUTLOOK_AUTO_LEARN_STYLE=true`, the server dynamically learns your email formatting style (font-family, font-size, color) from your most recent sent email each time you send or create a draft. This learned style is automatically applied to plain-text emails. No caching - learning happens live on every send/draft operation.
 
 ### <img src="https://api.iconify.design/material-symbols/calendar-month-outline.svg?color=%23004080" width="30"> 5 Calendar Tools ([Documentation](DOCUMENTATION.md#outils-calendrier))
 

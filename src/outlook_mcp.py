@@ -30,7 +30,7 @@ Security Notes:
     - No credentials are logged or transmitted
     - Email body content is truncated in responses to prevent data leakage
     
-Version: 1.0.1
+Version: 1.0.2
 Architecture: Ultra-Modular (1 file per tool)
 """
 
@@ -116,6 +116,12 @@ from tools.contact import get_contacts, create_contact, search_contacts
 
 mcp = FastMCP("outlook")
 logger.debug("FastMCP server instance created")
+
+# ============================================================================
+# EMAIL STYLE LEARNING
+# ============================================================================
+# Style learning is now dynamic - no startup learning required.
+# Styles are learned on-the-fly when sending/creating drafts if AUTO_LEARN_STYLE=true.
 
 # ============================================================================
 # TOOL REGISTRATION
