@@ -12,6 +12,71 @@ from config import EMAIL_BODY_PREVIEW_LENGTH
 logger = logging.getLogger(__name__)
 
 
+def count_real_attachments(mail_item) -> int:
+    """
+    Count only real file attachments, excluding inline images and embedded items.
+    
+    Args:
+        mail_item: Outlook MailItem COM object
+        
+    Returns:
+        int: Number of real file attachments
+        
+    Notes:
+        Filters out:
+        - Embedded/inline items (Type != 1)
+        - Small images likely to be signatures/logos (< 5KB and common image extensions)
+        - Attachments with ContentID (inline images referenced in HTML)
+    """
+    try:
+        real_count = 0
+        
+        for i in range(1, mail_item.Attachments.Count + 1):
+            try:
+                att = mail_item.Attachments.Item(i)
+                
+                # Type 1 = olByValue (regular file attachment)
+                # Type 5 = olEmbeddeditem, Type 6 = olOLE
+                if att.Type != 1:
+                    continue
+                
+                filename = att.FileName.lower()
+                size = att.Size
+                
+                # Check if it's an inline image (has ContentID)
+                try:
+                    # Try to access ContentID property (inline images have this)
+                    prop_accessor = att.PropertyAccessor
+                    # PR_ATTACH_CONTENT_ID = http://schemas.microsoft.com/mapi/proptag/0x3712001F
+                    content_id = prop_accessor.GetProperty("http://schemas.microsoft.com/mapi/proptag/0x3712001F")
+                    if content_id:
+                        # Has ContentID = inline image
+                        continue
+                except:
+                    # No ContentID property = likely a real attachment
+                    pass
+                
+                # Filter small images (likely signatures/logos)
+                image_extensions = ('.jpg', '.jpeg', '.png', '.gif', '.bmp')
+                if filename.endswith(image_extensions) and size < 5120:  # < 5KB
+                    continue
+                
+                # This is likely a real attachment
+                real_count += 1
+                
+            except Exception as e:
+                # If we can't determine, count it (be conservative)
+                logger.debug(f"Error checking attachment: {e}")
+                real_count += 1
+        
+        return real_count
+        
+    except Exception as e:
+        logger.error(f"Failed to count real attachments: {e}")
+        # Fallback to total count if filtering fails
+        return mail_item.Attachments.Count
+
+
 def format_email(mail_item) -> Dict[str, Any]:
     """
     Format an Outlook mail item as a dictionary for JSON serialization.
@@ -41,6 +106,9 @@ def format_email(mail_item) -> Dict[str, Any]:
         except Exception:
             pass
         
+        # Count real attachments (excluding inline images)
+        real_attachments_count = count_real_attachments(mail_item)
+        
         return {
             "subject": mail_item.Subject,
             "sender": mail_item.SenderName,
@@ -52,12 +120,13 @@ def format_email(mail_item) -> Dict[str, Any]:
             "sent_on": str(mail_item.SentOn) if hasattr(mail_item, 'SentOn') else None,
             "body": truncated_body,
             "body_length": len(email_body),
-            "has_attachments": mail_item.Attachments.Count > 0,
-            "attachment_count": mail_item.Attachments.Count,
+            "has_attachments": real_attachments_count > 0,
+            "attachment_count": real_attachments_count,
             "importance": mail_item.Importance,
             "unread": mail_item.UnRead,
             "categories": mail_item.Categories,
             "folder_path": folder_path,
+            "entry_id": mail_item.EntryID,
         }
     except Exception as e:
         logger.error("Failed to format email item", exc_info=True, extra={

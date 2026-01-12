@@ -77,7 +77,8 @@ def register(mcp):
                     items = folder.Items
                     if days_back > 0:
                         start_date = datetime.now() - timedelta(days=days_back)
-                        filter_str = f"[ReceivedTime] >= '{start_date.strftime('%m/%d/%Y')}'"
+                        # Use DD/MM/YYYY format for European Windows locales
+                        filter_str = f"[ReceivedTime] >= '{start_date.strftime('%d/%m/%Y')}'"
                         items = items.Restrict(filter_str)
                     items.Sort("[ReceivedTime]", True)
                     

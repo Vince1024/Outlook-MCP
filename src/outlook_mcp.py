@@ -113,6 +113,7 @@ from tools.email import get_inbox_emails, get_sent_emails, search_emails, send_e
 from tools.folder import list_outlook_folders, search_emails_in_custom_folder, list_outlook_rules
 from tools.calendar import get_calendar_events, create_calendar_event, search_calendar_events
 from tools.contact import get_contacts, create_contact, search_contacts
+from tools.attachment import get_email_attachments, download_email_attachment, send_email_with_attachments
 
 mcp = FastMCP("outlook")
 logger.debug("FastMCP server instance created")
@@ -156,8 +157,14 @@ create_contact.register(mcp)
 search_contacts.register(mcp)
 logger.debug("  [OK] 3 Contact tools registered")
 
-# Total: 14 individual tools, each in its own file
-logger.info("MCP Server ready - 14 tools registered (5 Email, 3 Folder, 3 Calendar, 3 Contact)")
+# Attachment tools (3 tools)
+get_email_attachments.register(mcp)
+download_email_attachment.register(mcp)
+send_email_with_attachments.register(mcp)
+logger.debug("  [OK] 3 Attachment tools registered")
+
+# Total: 17 individual tools, each in its own file
+logger.info("MCP Server ready - 17 tools registered (5 Email, 3 Folder, 3 Calendar, 3 Contact, 3 Attachment)")
 
 # ============================================================================
 # MAIN ENTRY POINT

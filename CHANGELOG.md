@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.3] - 2026-01-12
+
+### Added
+- **3 new Attachment Tools**: `get_email_attachments`, `download_email_attachment`, `send_email_with_attachments`
+- Robust attachment detection in `formatters.py` via new `count_real_attachments()` function
+- Smart filtering of inline images, email signatures, and embedded items based on ContentID, file type, and size
+
+### Fixed
+- Date format in `search_emails_in_custom_folder` now uses DD/MM/YYYY for European Windows locales (was MM/DD/YYYY)
+- Email attachment count now accurately reflects real file attachments, not inline images
+
+### Changed
+- All email-related tools now use robust attachment detection
+- `has_attachments` and `attachment_count` fields now filter out inline images and signature logos
+
+---
+
 ## [1.0.2] - 2026-01-06
 
 ### Changed

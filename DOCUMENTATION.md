@@ -1,6 +1,6 @@
 # Complete Documentation - MCP Outlook
 
-Complete technical documentation for MCP Outlook v1.0.2
+Complete technical documentation for MCP Outlook v1.0.3
 
 ## Table of Contents
 
@@ -8,6 +8,7 @@ Complete technical documentation for MCP Outlook v1.0.2
 - [Installation](#installation)
 - [Configuration](#configuration)
 - <img src="https://api.iconify.design/material-symbols/mail-outline.svg?color=%23004080" width="16"> [Email Tools](#email-tools)
+- <img src="https://api.iconify.design/material-symbols/attach-file.svg?color=%23004080" width="16"> [Attachment Tools](#attachment-tools)
 - <img src="https://api.iconify.design/material-symbols/calendar-month-outline.svg?color=%23004080" width="16"> [Calendar Tools](#calendar-tools)
 - <img src="https://api.iconify.design/material-symbols/perm-contact-calendar.svg?color=%23004080" width="16"> [Contact Tools](#contact-tools)
 - <img src="https://api.iconify.design/material-symbols/folder-outline.svg?color=%23004080" width="16"> [Folder Tools](#folder-tools)
@@ -445,6 +446,183 @@ create_draft_email(
 
 - Draft is saved in the Drafts folder
 - Can be modified and sent manually from Outlook
+
+---
+
+## <img src="https://api.iconify.design/material-symbols/attach-file.svg?color=%23004080" width="32"> Attachment Tools
+
+### `get_email_attachments`
+
+List all attachments from a specific email.
+
+#### Parameters
+
+- `entry_id` (str, required): Email entry ID (from email search results)
+
+#### Returns
+
+```json
+{
+  "success": true,
+  "email_subject": "Email subject",
+  "attachment_count": 2,
+  "attachments": [
+    {
+      "index": 1,
+      "filename": "document.pdf",
+      "size": 245760,
+      "type": 1,
+      "display_name": "document.pdf"
+    }
+  ]
+}
+```
+
+#### Attachment Type Codes
+
+- `1` - Regular file attachment (olByValue)
+- `5` - Embedded item (olEmbeddeditem)
+- `6` - OLE object (olOLE)
+
+#### Notes
+
+- Uses robust attachment detection that filters out inline images and email signatures
+- Only returns real file attachments (Type 1, size > 5KB for images, no ContentID)
+- Attachments are indexed starting from 1
+
+#### Example
+
+```python
+# Get attachments from an email
+result = get_email_attachments(entry_id="000000...")
+
+# Result includes attachment metadata
+for att in result["attachments"]:
+    print(f"{att['filename']}: {att['size'] / 1024:.1f} KB")
+```
+
+---
+
+### `download_email_attachment`
+
+Download a specific attachment from an email to disk.
+
+#### Parameters
+
+- `entry_id` (str, required): Email entry ID
+- `attachment_index` (int, required): Attachment index (1-based, from `get_email_attachments`)
+- `save_path` (str, required): Full path where to save the file (including filename)
+
+#### Returns
+
+```json
+{
+  "success": true,
+  "message": "Attachment downloaded successfully",
+  "filename": "document.pdf",
+  "save_path": "C:\\Downloads\\document.pdf",
+  "size": 245760
+}
+```
+
+#### Notes
+
+- Attachment index is 1-based (first attachment = 1)
+- Target directory must exist (will not create parent directories)
+- Will overwrite existing file at save_path without warning
+- Returns file size in bytes after successful download
+
+#### Example
+
+```python
+# Download first attachment
+download_email_attachment(
+    entry_id="000000...",
+    attachment_index=1,
+    save_path="C:\\Downloads\\document.pdf"
+)
+
+# Download all attachments from an email
+attachments = get_email_attachments(entry_id="000000...")
+for att in attachments["attachments"]:
+    download_email_attachment(
+        entry_id="000000...",
+        attachment_index=att["index"],
+        save_path=f"C:\\Downloads\\{att['filename']}"
+    )
+```
+
+---
+
+### `send_email_with_attachments`
+
+Send an email with one or more file attachments.
+
+#### Parameters
+
+- `to` (str, required): Recipient email address(es), semicolon-separated
+- `subject` (str, required): Email subject
+- `body` (str, required): Email body (plain text)
+- `attachments` (str, required): File paths (comma or semicolon separated, or JSON array)
+- `cc` (str, optional): CC recipients, semicolon-separated
+- `bcc` (str, optional): BCC recipients, semicolon-separated
+- `importance` (str, optional): Email importance ("low", "normal", "high"). Default: "normal"
+- `signature_name` (str, optional): Signature name (currently unused - see notes)
+
+#### Returns
+
+```json
+{
+  "success": true,
+  "message": "Email sent to recipient@example.com",
+  "attachments_added": 2,
+  "failed_attachments": []
+}
+```
+
+#### Attachments Format
+
+Accepts multiple formats:
+
+```python
+# Comma-separated
+attachments="C:\\file1.pdf,C:\\file2.xlsx"
+
+# Semicolon-separated
+attachments="C:\\file1.pdf;C:\\file2.xlsx"
+
+# JSON array
+attachments='["C:\\\\file1.pdf","C:\\\\file2.xlsx"]'
+```
+
+#### Notes
+
+- All attachment file paths must exist or will be listed in `failed_attachments`
+- Email is sent immediately (not saved as draft)
+- Supports auto-learning style when `OUTLOOK_AUTO_LEARN_STYLE=true`
+- Signature insertion via `signature_name` is currently unreliable due to Outlook COM limitations
+
+#### Example
+
+```python
+# Send email with single attachment
+send_email_with_attachments(
+    to="colleague@company.com",
+    subject="Monthly Report",
+    body="Please find the report attached.",
+    attachments="C:\\Reports\\monthly_report.pdf"
+)
+
+# Send with multiple attachments
+send_email_with_attachments(
+    to="team@company.com",
+    subject="Q4 Analysis",
+    body="See attached files for Q4 analysis.",
+    attachments="C:\\Reports\\analysis.pdf,C:\\Data\\raw_data.xlsx",
+    cc="manager@company.com",
+    importance="high"
+)
+```
 
 ---
 

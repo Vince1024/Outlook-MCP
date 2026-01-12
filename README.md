@@ -9,13 +9,14 @@
 
 A Model Context Protocol (MCP) server for Microsoft Outlook integration.
 
-**Version**: 1.0.2 | **Documentation**: [DOCUMENTATION.md](DOCUMENTATION.md) | **Contributing**: [CONTRIBUTING.md](CONTRIBUTING.md) | **Examples**: [EXAMPLES.md](EXAMPLES.md)
+**Version**: 1.0.3 | **Documentation**: [DOCUMENTATION.md](DOCUMENTATION.md) | **Contributing**: [CONTRIBUTING.md](CONTRIBUTING.md) | **Examples**: [EXAMPLES.md](EXAMPLES.md)
 
 ## Overview
 
 This MCP server provides AI assistants with the ability to interact with Microsoft Outlook, including:
 
 - <img src="https://api.iconify.design/material-symbols/mail-outline.svg?color=%23004080" width="20"> **Email Management**: Read, search, send, and draft emails with HTML support and Outlook signatures
+- <img src="https://api.iconify.design/material-symbols/attach-file.svg?color=%23004080" width="20"> **Attachment Management**: List, download, and send email attachments with robust detection
 - <img src="https://api.iconify.design/material-symbols/calendar-month-outline.svg?color=%23004080" width="20"> **Calendar Management**: View, create, and search calendar events
 - <img src="https://api.iconify.design/material-symbols/perm-contact-calendar.svg?color=%23004080" width="20"> **Contact Management**: View, create, and search contacts
 - <img src="https://api.iconify.design/material-symbols/folder-outline.svg?color=%23004080" width="20"> **Folder Management**: List folders, search in custom folders, and view Outlook rules
@@ -34,6 +35,14 @@ This MCP server provides AI assistants with the ability to interact with Microso
 - `create_draft_email` - Create draft emails without sending, with HTML and **auto-learned style**
 
 > **Auto-Learning Style**: When `OUTLOOK_AUTO_LEARN_STYLE=true`, the server dynamically learns your email formatting style (font-family, font-size, color) from your most recent sent email each time you send or create a draft. This learned style is automatically applied to plain-text emails. No caching - learning happens live on every send/draft operation.
+
+### <img src="https://api.iconify.design/material-symbols/attach-file.svg?color=%23004080" width="30"> 3 Attachment Tools ([Documentation](DOCUMENTATION.md#attachment-tools))
+
+- `get_email_attachments` - List all attachments from an email (with robust detection)
+- `download_email_attachment` - Download a specific attachment to disk
+- `send_email_with_attachments` - Send emails with file attachments
+
+> **Robust Detection**: Attachment detection intelligently filters out inline images, email signatures, and embedded items to show only real file attachments. Uses ContentID detection, file size filtering, and type checking.
 
 ### <img src="https://api.iconify.design/material-symbols/calendar-month-outline.svg?color=%23004080" width="30"> 3 Calendar Tools ([Documentation](DOCUMENTATION.md#calendar-tools))
 
