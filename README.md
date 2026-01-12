@@ -5,7 +5,7 @@
 [![Platform](https://img.shields.io/badge/platform-Windows-blue.svg)](https://www.microsoft.com/windows)
 [![MCP](https://img.shields.io/badge/MCP-Compatible-green.svg)](https://modelcontextprotocol.io) 
 
-<img src="https://api.iconify.design/material-symbols/mail-outline.svg?color=%23004080" width="60"> <img src="https://api.iconify.design/material-symbols/calendar-month-outline.svg?color=%23004080" width="60"> <img src="https://api.iconify.design/material-symbols/perm-contact-calendar.svg?color=%23004080" width="60"> <img src="https://api.iconify.design/material-symbols/output-circle.svg?color=%23004080" width="60"> <img src="https://api.iconify.design/material-symbols/settings-account-box.svg?color=%23004080" width="60"> <img src="https://api.iconify.design/material-symbols/feature-search.svg?color=%23004080" width="60">
+<img src="https://api.iconify.design/material-symbols/mail-outline.svg?color=%23004080" width="60"> <img src="https://api.iconify.design/material-symbols/calendar-month-outline.svg?color=%23004080" width="60"> <img src="https://api.iconify.design/material-symbols/perm-contact-calendar.svg?color=%23004080" width="60"> <img src="https://api.iconify.design/material-symbols/folder-outline.svg?color=%23004080" width="60"> <img src="https://api.iconify.design/material-symbols/settings-account-box.svg?color=%23004080" width="60">
 
 A Model Context Protocol (MCP) server for Microsoft Outlook integration.
 
@@ -15,61 +15,43 @@ A Model Context Protocol (MCP) server for Microsoft Outlook integration.
 
 This MCP server provides AI assistants with the ability to interact with Microsoft Outlook, including:
 
-- <img src="https://api.iconify.design/material-symbols/mail-outline.svg?color=%23004080" width="20"> **Email Management**: Read, search, send, and draft emails with HTML support, Outlook signatures, and attachments
-- <img src="https://api.iconify.design/material-symbols/calendar-month-outline.svg?color=%23004080" width="20"> **Calendar Management**: View, create, search calendar events, and respond to meeting invitations
+- <img src="https://api.iconify.design/material-symbols/mail-outline.svg?color=%23004080" width="20"> **Email Management**: Read, search, send, and draft emails with HTML support and Outlook signatures
+- <img src="https://api.iconify.design/material-symbols/calendar-month-outline.svg?color=%23004080" width="20"> **Calendar Management**: View, create, and search calendar events
 - <img src="https://api.iconify.design/material-symbols/perm-contact-calendar.svg?color=%23004080" width="20"> **Contact Management**: View, create, and search contacts
-- <img src="https://api.iconify.design/material-symbols/output-circle.svg?color=%23004080" width="20"> **Out-of-Office Management**: Configure automatic reply settings
+- <img src="https://api.iconify.design/material-symbols/folder-outline.svg?color=%23004080" width="20"> **Folder Management**: List folders, search in custom folders, and view Outlook rules
 - <img src="https://api.iconify.design/material-symbols/settings-account-box.svg?color=%23004080" width="20"> **Auto-Learning Style**: Automatically learns your email formatting preferences (font, size, color) from sent emails
-- <img src="https://api.iconify.design/material-symbols/feature-search.svg?color=%23004080" width="20"> **Live Monitoring**: Real-time Outlook state via MCP Resources (unread count, recent emails, today's events)
 
 ## Features
 
 > **Detailed documentation for each feature**: [DOCUMENTATION.md](DOCUMENTATION.md)
 
-### <img src="https://api.iconify.design/material-symbols/mail-outline.svg?color=%23004080" width="30"> Email Tools ([Documentation](DOCUMENTATION.md#outils-email)) 
+### <img src="https://api.iconify.design/material-symbols/mail-outline.svg?color=%23004080" width="30"> 5 Email Tools ([Documentation](DOCUMENTATION.md#email-tools)) 
 
 - `get_inbox_emails` - Retrieve emails from inbox with filtering options
 - `get_sent_emails` - Retrieve sent emails
 - `search_emails` - Search emails across folders by subject, body, or sender
 - `send_email` - Send emails with CC/BCC support, HTML content, and **auto-learned style**
 - `create_draft_email` - Create draft emails without sending, with HTML and **auto-learned style**
-- `get_email_attachments` - Get list of attachments from a specific email
-- `download_email_attachment` - Download attachment from an email to disk
-- `send_email_with_attachments` - Send emails with file attachments
 
 > **Auto-Learning Style**: When `OUTLOOK_AUTO_LEARN_STYLE=true`, the server dynamically learns your email formatting style (font-family, font-size, color) from your most recent sent email each time you send or create a draft. This learned style is automatically applied to plain-text emails. No caching - learning happens live on every send/draft operation.
 
-### <img src="https://api.iconify.design/material-symbols/calendar-month-outline.svg?color=%23004080" width="30"> 5 Calendar Tools ([Documentation](DOCUMENTATION.md#outils-calendrier))
+### <img src="https://api.iconify.design/material-symbols/calendar-month-outline.svg?color=%23004080" width="30"> 3 Calendar Tools ([Documentation](DOCUMENTATION.md#calendar-tools))
 
 - `get_calendar_events` - Get upcoming calendar events
 - `create_calendar_event` - Create new calendar events with attendees
 - `search_calendar_events` - Search events by subject or location
-- `get_meeting_requests` - Get pending meeting invitations that need a response
-- `respond_to_meeting` - Accept, decline, or tentatively respond to meeting invitations
 
-### <img src="https://api.iconify.design/material-symbols/perm-contact-calendar.svg?color=%23004080" width="30"> 3 Contact Tools ([Documentation](DOCUMENTATION.md#outils-contacts))
+### <img src="https://api.iconify.design/material-symbols/perm-contact-calendar.svg?color=%23004080" width="30"> 3 Contact Tools ([Documentation](DOCUMENTATION.md#contact-tools))
 
 - `get_contacts` - Retrieve contacts with optional name filtering
 - `create_contact` - Create new contacts
 - `search_contacts` - Search contacts by name, email, or company
 
-### <img src="https://api.iconify.design/material-symbols/folder-outline.svg?color=%23004080" width="30"> 3 Folder Tools ([Documentation](DOCUMENTATION.md#outils-dossiers))
+### <img src="https://api.iconify.design/material-symbols/folder-outline.svg?color=%23004080" width="30"> 3 Folder Tools ([Documentation](DOCUMENTATION.md#folder-tools))
 
 - `list_outlook_folders` - List all Outlook folders (ultra-fast, no item counts)
 - `search_emails_in_custom_folder` - Search in specific custom folders with date filtering
 - `list_outlook_rules` - List all Outlook rules with conditions and actions
-
-### <img src="https://api.iconify.design/material-symbols/output-circle.svg?color=%23004080" width="30"> 3 Out-of-Office Tools ([Documentation](DOCUMENTATION.md#outils-out-of-office))
-
-- `get_out_of_office_settings` - Get current automatic reply settings
-- `set_out_of_office` - Configure automatic replies (immediate or scheduled)
-- `disable_out_of_office` - Disable automatic replies
-
-### <img src="https://api.iconify.design/material-symbols/feature-search.svg?color=%23004080" width="30"> 3 MCP Resources ([Documentation](DOCUMENTATION.md#mcp-resources))
-
-- `outlook://inbox/unread-count` - Real-time unread email count
-- `outlook://inbox/recent` - 5 most recent emails
-- `outlook://calendar/today` - Today's calendar events
 
 ## Performance Optimizations
 
@@ -263,86 +245,6 @@ create_contact(
 )
 ```
 
-### Attachment Management
-
-```python
-# Get attachments from an email (use entry_id from get_inbox_emails)
-get_email_attachments(entry_id="00000000...")
-
-# Download a specific attachment
-download_email_attachment(
-    entry_id="00000000...",
-    attachment_index=1,
-    save_path="C:/Users/user/Downloads/report.pdf"
-)
-
-# Send email with attachments
-send_email_with_attachments(
-    to="colleague@company.com",
-    subject="Monthly Report",
-    body="Please find attached the report.",
-    attachments="C:/Users/user/Documents/report.pdf; C:/Users/user/Documents/summary.xlsx",
-    signature_name="My Signature"
-)
-```
-
-### Meeting Response Management
-
-```python
-# Get pending meeting requests
-get_meeting_requests(days_range=30)
-
-# Accept a meeting invitation
-respond_to_meeting(
-    entry_id="00000000...",
-    response="accept",
-    send_response=True
-)
-
-# Decline with a comment
-respond_to_meeting(
-    entry_id="00000000...",
-    response="decline",
-    send_response=True,
-    comment="Sorry, I have a conflict with another meeting."
-)
-
-# Tentatively accept
-respond_to_meeting(
-    entry_id="00000000...",
-    response="tentative",
-    send_response=True
-)
-```
-
-### Out-of-Office Management
-
-```python
-# Get current out-of-office settings
-get_out_of_office_settings()
-
-# Enable out-of-office immediately
-set_out_of_office(
-    enabled=True,
-    internal_reply="I'm out of office until next week. For urgent matters, contact my colleague.",
-    external_reply="I'm currently unavailable. I'll respond when I return.",
-    external_audience="Known"
-)
-
-# Schedule out-of-office for specific dates
-set_out_of_office(
-    enabled=True,
-    internal_reply="On vacation",
-    external_reply="I'm on vacation and will return on Dec 27th.",
-    scheduled=True,
-    start_time="2025-12-20 00:00",
-    end_time="2025-12-27 00:00",
-    external_audience="All"
-)
-
-# Disable out-of-office
-disable_out_of_office()
-```
 
 ## Security & Permissions
 
@@ -429,7 +331,6 @@ ruff check src/
 - **Outlook Required**: Microsoft Outlook must be installed and running
 - **Single Account**: Works with the default Outlook profile only
 - **Performance**: Large mailboxes may have slower search performance
-- **Out-of-Office API**: May not work on all Outlook versions (requires Outlook 2010+ with Exchange)
 
 ## Roadmap
 
@@ -438,11 +339,13 @@ ruff check src/
 - [x] Outlook signature integration
 - [x] Silent logging for cleaner integration
 - [x] Outlook rules listing
-- [x] Attachment download/upload support
-- [x] Meeting response handling (accept/decline/tentative)
-- [x] Out-of-office settings (get/set/disable)
+- [x] Auto-learning email style from sent emails
+- [x] Recursive folder search
 
 ### Planned Features
+- [ ] Attachment download/upload support
+- [ ] Meeting response handling (accept/decline/tentative)
+- [ ] Out-of-office settings (get/set/disable)
 - [ ] Task management integration
 - [ ] Folder management (create, move, delete)
 - [ ] Advanced filtering (flags, categories, custom properties)

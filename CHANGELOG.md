@@ -45,52 +45,35 @@ MCP Outlook is a Model Context Protocol server that provides AI assistants with 
 
 #### Features
 
-**Email Management** (9 tools)
+**Email Management** (5 tools)
 - `get_inbox_emails` - Retrieve emails from inbox with unread filtering
 - `get_sent_emails` - Retrieve sent emails
 - `search_emails` - Search emails across standard folders
 - `send_email` - Send emails with CC/BCC, importance levels, HTML content, and Outlook signature integration
 - `create_draft_email` - Create draft emails without sending, with HTML and signature support
-- `get_email_attachments` - Get list of attachments from a specific email with details
-- `download_email_attachment` - Download specific attachment from an email to disk
-- `send_email_with_attachments` - Send emails with file attachments
-- `learn_user_email_preferences` - Automatically learn email formatting preferences from sent emails
 
 **Folder Management** (3 tools)
 - `list_outlook_folders` - List all Outlook folders (ultra-fast, no item counts)
 - `search_emails_in_custom_folder` - Search in specific custom folders with date filtering and recursive support
 - `list_outlook_rules` - List all Outlook mail rules
 
-**Calendar Management** (5 tools)
+**Calendar Management** (3 tools)
 - `get_calendar_events` - Get upcoming calendar events
 - `create_calendar_event` - Create new calendar events with attendees
 - `search_calendar_events` - Search events by subject or location
-- `get_meeting_requests` - Get pending meeting invitations that need a response
-- `respond_to_meeting` - Accept, decline, or tentatively respond to meeting invitations
 
 **Contact Management** (3 tools)
 - `get_contacts` - Retrieve contacts with optional name filtering
 - `create_contact` - Create new contacts
 - `search_contacts` - Search contacts by name, email, or company
 
-**Out-of-Office Management** (3 tools)
-- `get_out_of_office_settings` - Get current automatic reply configuration
-- `set_out_of_office` - Configure automatic replies (immediate or scheduled)
-- `disable_out_of_office` - Disable automatic replies
-
-**MCP Resources** (3 resources)
-- `outlook://inbox/unread-count` - Real-time unread email count monitoring
-- `outlook://inbox/recent` - 5 most recent emails snapshot
-- `outlook://calendar/today` - Today's calendar events overview
-
 #### Architecture
 
 **Ultra-Modular Design**
-- 14 separate tool files (1 file per tool, < 100 lines each)
-- 4 utility modules (connection, formatters, signature, folder helpers)
+- 14 separate tool files (1 file per tool)
+- Utility modules (connection, formatters, signature, folder helpers, style learner)
 - Centralized configuration in `config.py`
-- Comprehensive unit test suite (14 test files)
-- Archive of monolithic version preserved in `/V1/` for reference
+- Auto-learning email style from sent emails
 
 #### Performance Optimizations
 
