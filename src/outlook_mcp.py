@@ -108,7 +108,7 @@ if LOG_FILE:
 
 from fastmcp import FastMCP
 
-# Import individual tool registration functions
+# Import individual tool modules
 from tools.email import get_inbox_emails, get_sent_emails, search_emails, send_email, create_draft_email
 from tools.folder import list_outlook_folders, search_emails_in_custom_folder, list_outlook_rules
 from tools.calendar import get_calendar_events, create_calendar_event, search_calendar_events
